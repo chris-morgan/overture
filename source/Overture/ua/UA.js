@@ -1,7 +1,8 @@
-/*global navigator, document, window */
+/*global navigator, document, window, devicePixelRatio, matchMedia */
 
 import '../foundation/Enumerable.js';  // For Array#forEach on ES3 browsers?
 // TODO(cmorgan/modulify) remove this alleged dependency, we use a ES5 baseline.
+import Object from '../foundation/Object.js';
 
 /**
     Module: UA
@@ -103,12 +104,14 @@ if ( browser === 'opr/' ) {
 }() );
 
 /**
-    Namespace: O.UA
+    Object: O.UA
 
     The O.UA namespace contains information about which browser and platform the
     application is currently running on, and which CSS properties are supported.
 */
-export default {
+// O.UA is an O.Object rather than a generic namespace because devicePixelRatio
+// is an actual observable property.
+const UA = new Object({
     /**
         Property: O.UA.platform
         Type: String
@@ -294,4 +297,33 @@ export default {
     // TODO: Find a way of detecting this rather than hardcoding
     // For now, referencing http://caniuse.com/#feat=u2f
     canU2F: browser === 'chrome' && version >= 41,
+
+    /**
+        Property: O.UA.devicePixelRatio
+        Type: Number
+
+        The device pixel ratio. This is an actual observable property and may
+        change if the devicePixelRatio changes, e.g. if the user changes their
+        zoom level or the window is moved from a low- to a high-DPI screen.
+
+        Remember that values other than “1” and “2” can occur.
+    */
+});
+
+export default UA;
+
+// The Overture browser baseline supports devicePixelRatio and matchMedia, so no
+// need for feature detection. Some don't support dppx (e.g. IE11), but that's
+// harmless (the query becomes 'not all', i.e. always false).
+let query;
+const devicePixelRatioChanged = function () {
+    const { devicePixelRatio } = window;
+    if ( query ) {
+        query.removeListener( devicePixelRatioChanged );
+    }
+    query = matchMedia( `(min-resolution:${devicePixelRatio - 0.001}dppx) and \
+                         (max-resolution:${devicePixelRatio + 0.001}dppx)` );
+    query.addListener( devicePixelRatioChanged );
+    UA.set( 'devicePixelRatio', devicePixelRatio );
 };
+devicePixelRatioChanged();
