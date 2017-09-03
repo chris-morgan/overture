@@ -114,6 +114,8 @@ const isSameObserver = function ( a, b ) {
         a.path === b.path;
 };
 
+const __meta__ = Symbol( '__meta__' );
+
 class Metadata {
     constructor ( object ) {
         this.object = object;
@@ -128,7 +130,7 @@ class Metadata {
         this.inits = {};
         this.isInitialised = false;
 
-        object.__meta__ = this;
+        object[ __meta__ ] = this;
     }
 
     // When firing observers we always iterate forwards and cache the length
@@ -179,7 +181,7 @@ class Metadata {
 }
 
 const meta = function ( object ) {
-    let data = object.__meta__;
+    let data = object[ __meta__ ];
     if ( !data ) {
         data = new Metadata( object );
     } else if ( data.object !== object ) {
@@ -209,7 +211,7 @@ const meta = function ( object ) {
         data.bindings = Object.create( data.bindings );
         data.inits = Object.create( data.inits );
 
-        object.__meta__ = data;
+        object[ __meta__ ] = data;
     }
     return data;
 };
@@ -278,8 +280,7 @@ const mixin = function ( object, extras, doNotOverwrite ) {
         let metadata;
 
         for ( const key in extras ) {
-            if ( key !== '__meta__' &&
-                    ( force || !object.hasOwnProperty( key ) ) ) {
+            if ( force || !object.hasOwnProperty( key ) ) {
                 const old = object[ key ];
                 const value = extras[ key ];
                 if ( old && old.__teardownProperty__ ) {
