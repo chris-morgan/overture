@@ -2,9 +2,10 @@
 
 import { Class } from '../core/Core';
 import '../core/Array';  // For Array#include
-import '../core/String';  // For String#contains
+import '../core/String.prototype.contains';
 import Obj from '../foundation/Object';
-import RunLoop from '../foundation/RunLoop';  // Also Function#queue
+import RunLoop from '../foundation/RunLoop';
+import '../foundation/Function.prototype.queue';
 import '../foundation/Function.prototype.property';
 import { create as el } from '../dom/Element';
 import { create as createStylesheet } from '../dom/Stylesheet';

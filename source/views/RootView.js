@@ -1,6 +1,6 @@
 import { Class } from '../core/Core';
 import '../foundation/Function.prototype.on';
-import '../foundation/RunLoop';  // For Function#invokeInRunLoop
+import '../foundation/Function.prototype.invokeInRunLoop';
 import { isIOS } from '../ua/UA';
 
 import View from './View';

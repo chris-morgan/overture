@@ -5,10 +5,11 @@ import '../../foundation/Function.prototype.property';
 import '../../foundation/Function.prototype.nocache';
 import '../../foundation/Function.prototype.on';
 import '../../foundation/Function.prototype.observes';
+import '../../foundation/Function.prototype.nextFrame';
+import '../../foundation/Function.prototype.queue';
 import { isEqualToValue } from '../../foundation/Transform';
 import { bind, bindTwoWay } from '../../foundation/Binding';
-import RunLoop from '../../foundation/RunLoop';  // Also Function#nextFrame
-                                                    // and Function#queue
+import RunLoop from '../../foundation/RunLoop';
 import formatKeyForPlatform from '../../application/formatKeyForPlatform';
 import { getPosition, nearest, create as el } from '../../dom/Element';
 import { lookupKey, isClickModified } from '../../dom/DOMEvent';

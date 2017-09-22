@@ -2,7 +2,7 @@
 
 import Obj from '../foundation/Object';
 import '../foundation/Function.prototype.on';
-import '../foundation/RunLoop';  // For Function#invokeInRunLoop
+import '../foundation/Function.prototype.invokeInRunLoop';
 import { lookupKey } from '../dom/DOMEvent';
 import ViewEventsController from '../views/ViewEventsController';
 import { getViewFromNode } from '../views/activeViews';

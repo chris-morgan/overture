@@ -1,6 +1,7 @@
 import { Class } from '../../core/Core';
 import '../../foundation/Function.prototype.observes';
-import RunLoop from '../../foundation/RunLoop';  // Also Function#queue
+import '../../foundation/Function.prototype.queue';
+import RunLoop from '../../foundation/RunLoop';
 import ScrollView from '../containers/ScrollView';
 import ListView from './ListView';
 import TrueVisibleRect from './TrueVisibleRect';

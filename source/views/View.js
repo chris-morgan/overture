@@ -1,5 +1,5 @@
 import { Class } from '../core/Core';
-import '../core/String';  // For String#capitalise
+import '../core/String.prototype.capitalise';
 import Obj from '../foundation/Object';
 import RunLoop from '../foundation/RunLoop';
 import '../foundation/Function.prototype.observes';

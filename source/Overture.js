@@ -40,10 +40,22 @@ export { meta, guid, mixin, extend, merge, clone, isEqual, Class } from './core/
 export { default as sortByProperties } from './core/sortByProperties';
 import './core/Array';
 import './core/Date';
-import './core/Number';
+import './core/Function.prototype.extend';
+import './core/Function.prototype.implement';
+import './core/Number.prototype.limit';
+import './core/Number.prototype.mod';
 import './core/Object';
 import './core/RegExp';
-import './core/String';
+import './core/String.prototype.camelCase';
+import './core/String.prototype.capitalise';
+import './core/String.prototype.contains';
+import './core/String.prototype.escapeHTML';
+import './core/String.prototype.escapeRegExp';
+import './core/String.prototype.format';
+import './core/String.prototype.hash';
+import './core/String.prototype.hyphenate';
+import './core/String.prototype.md5';
+import './core/String.prototype.runeAt';
 
 export { Binding, bind, bindTwoWay } from './foundation/Binding';
 export { default as Enumerable } from './foundation/Enumerable';

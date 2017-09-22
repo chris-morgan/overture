@@ -1,6 +1,6 @@
 import { Class } from '../core/Core';
 import '../core/Date';  // For Date#add
-import '../core/String';  // For String#format
+import '../core/String.prototype.format';
 
 // Periods format:
 // until posix time, offset (secs), rules name, suffix

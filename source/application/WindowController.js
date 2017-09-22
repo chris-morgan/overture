@@ -2,10 +2,11 @@
 
 import { Class } from '../core/Core';
 import '../core/Date';  // For Date#format
-import '../core/String';  // For String#escapeHTML
+import '../core/String.prototype.escapeHTML';
 import Obj from '../foundation/Object';
 import '../foundation/Function.prototype.on';
-import RunLoop from '../foundation/RunLoop';  // + Function#invokeInRunLoop
+import '../foundation/Function.prototype.invokeInRunLoop';
+import RunLoop from '../foundation/RunLoop';
 
 /**
     Class: O.WindowController

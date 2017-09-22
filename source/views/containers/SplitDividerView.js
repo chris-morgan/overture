@@ -1,5 +1,5 @@
 import { Class } from '../../core/Core';
-import '../../core/Number';  // For Number#limit
+import '../../core/Number.prototype.limit';
 import { bind, bindTwoWay } from '../../foundation/Binding';
 import '../../foundation/Function.prototype.property';
 import View from '../View';

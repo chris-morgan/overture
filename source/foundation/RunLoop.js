@@ -484,72 +484,6 @@ const RunLoop = {
 
 export default RunLoop;
 
-Object.assign( Function.prototype, {
-    /**
-        Method: Function#queue
-
-        Parameters:
-            queue - {String} The name of the queue to add calls to this function
-                    to.
-
-        Returns:
-            {Function} Returns wrapper that passes calls to
-            <O.RunLoop.queueFn>.
-    */
-    queue ( queue ) {
-        const fn = this;
-        return function () {
-            RunLoop.queueFn( queue, fn, this );
-            return this;
-        };
-    },
-
-    /**
-        Method: Function#nextLoop
-
-        Returns:
-            {Function} Returns wrapper that passes calls to
-            <O.RunLoop.invokeInNextEventLoop>.
-    */
-    nextLoop () {
-        const fn = this;
-        return function () {
-            RunLoop.invokeInNextEventLoop( fn, this );
-            return this;
-        };
-    },
-
-    /**
-        Method: Function#nextFrame
-
-        Returns:
-            {Function} Returns wrapper that passes calls to
-            <O.RunLoop.invokeInNextFrame>.
-    */
-    nextFrame () {
-        const fn = this;
-        return function () {
-            RunLoop.invokeInNextFrame( fn, this );
-            return this;
-        };
-    },
-
-    /**
-        Method: Function#invokeInRunLoop
-
-        Wraps any calls to this function inside a call to <O.RunLoop.invoke>.
-
-        Returns:
-            {Function} Returns wrapped function.
-    */
-    invokeInRunLoop () {
-        const fn = this;
-        return function () {
-            return RunLoop.invoke( fn, this, arguments );
-        };
-    },
-});
-
 nextLoop = RunLoop.invoke.bind( RunLoop,
     RunLoop.flushQueue, RunLoop, [ 'nextLoop' ]
 );
@@ -561,6 +495,3 @@ nextFrame = function ( time ) {
     RunLoop.invoke( RunLoop.flushQueue, RunLoop, [ 'nextFrame' ] );
     RunLoop.mayRedraw = false;
 };
-
-// TODO(cmorgan/modulify): do something about these exports: Function#queue,
-// Function#nextLoop, Function#nextFrame, Function#invokeInRunLoop

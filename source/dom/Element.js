@@ -1,6 +1,8 @@
 /*global Element, document */
 
-import '../core/String';  // For String#camelCase, #contains, #hyphenate
+import '../core/String.prototype.camelCase';
+import '../core/String.prototype.contains';
+import '../core/String.prototype.hyphenate';
 import { browser } from '../ua/UA';
 import Binding from '../foundation/Binding';
 import RunLoop from '../foundation/RunLoop';

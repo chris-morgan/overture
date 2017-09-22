@@ -4,7 +4,7 @@ import ObservableRange from '../../foundation/ObservableRange';
 import Enumerable from '../../foundation/Enumerable';
 import '../../foundation/Function.prototype.on';
 import '../../foundation/Function.prototype.observes';
-import '../../foundation/RunLoop';  // For Function#queue
+import '../../foundation/Function.prototype.queue';
 import '../../foundation/Function.prototype.property';
 import '../../foundation/Function.prototype.nocache';
 

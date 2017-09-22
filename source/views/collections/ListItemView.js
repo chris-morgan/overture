@@ -1,6 +1,6 @@
 import { Class } from '../../core/Core';
 import '../../foundation/Function.prototype.property';
-import '../../foundation/RunLoop';  // For Function#nextFrame
+import '../../foundation/Function.prototype.nextLoop';
 import View from '../View';
 
 const ListItemView = Class({

@@ -1,6 +1,7 @@
 import { Class, meta } from '../core/Core';
 import Obj from '../foundation/Object';
-import RunLoop from '../foundation/RunLoop';  // Also Function#queue
+import RunLoop from '../foundation/RunLoop';
+import '../foundation/Function.prototype.queue';
 import '../foundation/Function.prototype.observes';
 import { READY } from '../datastore/record/Status';
 

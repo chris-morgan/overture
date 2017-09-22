@@ -1,4 +1,4 @@
-import './RunLoop';  // For Function#invokeInRunLoop
+import './Function.prototype.invokeInRunLoop';
 
 const NativePromise = Promise;
 const NativePromisePrototype = NativePromise.prototype;

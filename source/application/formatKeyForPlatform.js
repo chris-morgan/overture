@@ -1,4 +1,4 @@
-import '../core/String';  // For String#capitalise
+import '../core/String.prototype.capitalise';
 import { isMac } from '../ua/UA';
 
 const platformKeys = {

@@ -17,22 +17,3 @@ Number.prototype.limit = function ( min, max ) {
     // truthy value, leading to all sorts of interesting behaviour...
     return this < min ? min : this > max ? max : this + 0;
 };
-
-/**
-    Method: Number#mod
-
-    Returns the number mod n.
-
-    Parameters:
-        n - {Number}
-
-    Returns:
-        {Number} The number mod n.
-*/
-Number.prototype.mod = function ( n ) {
-    const m = this % n;
-    return m < 0 ? m + n : m;
-};
-
-// TODO(cmorgan/modulify): do something about these exports: Number#limit,
-// Number#mod

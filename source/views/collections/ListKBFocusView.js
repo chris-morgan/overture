@@ -1,9 +1,9 @@
 import { Class } from '../../core/Core';
-import '../../core/Number';  // For Number#limit
+import '../../core/Number.prototype.limit';
 import { bind } from '../../foundation/Binding';
 import '../../foundation/Function.prototype.property';
 import '../../foundation/Function.prototype.nocache';
-import '../../foundation/RunLoop';  // For Function#queue
+import '../../foundation/Function.prototype.queue';
 import ScrollView from '../containers/ScrollView';
 import View from '../View';
 import ViewEventsController from '../ViewEventsController';

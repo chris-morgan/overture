@@ -1,5 +1,6 @@
 import { Class } from '../../core/Core';
-import RunLoop from '../../foundation/RunLoop';  // Also Function#queue
+import RunLoop from '../../foundation/RunLoop';
+import '../../foundation/Function.prototype.queue';
 import '../../foundation/Function.prototype.property';
 import '../../foundation/Function.prototype.on';
 import '../../foundation/Function.prototype.observes';

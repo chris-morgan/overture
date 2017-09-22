@@ -3,7 +3,8 @@
 import { Class } from '../core/Core';
 import Obj from '../foundation/Object';
 import '../foundation/Function.prototype.observes';
-import '../foundation/RunLoop';  // For Function#invokeInRunLoop, #queue
+import '../foundation/Function.prototype.invokeInRunLoop';
+import '../foundation/Function.prototype.queue';
 
 /**
     Module: Application

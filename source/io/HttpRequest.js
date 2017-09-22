@@ -1,7 +1,7 @@
 /*global location */
 
 import { Class } from '../core/Core';
-import '../core/String';  // For String#contains
+import '../core/String.prototype.contains';
 import Obj from '../foundation/Object';
 import RunLoop from '../foundation/RunLoop';
 import '../foundation/Function.prototype.on';

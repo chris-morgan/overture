@@ -1,4 +1,4 @@
-import './Number';  // For Number#mod
+import './Number.prototype.mod';
 
 // Circular but it's… mostly OK. See Overture.js for explanation.
 import { i18n } from '../localisation/LocaleController';

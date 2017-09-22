@@ -1,5 +1,5 @@
-import '../core/Number';  // For Number#mod
-import '../core/String';  // For String#escapeRegExp
+import '../core/Number.prototype.mod';
+import '../core/String.prototype.escapeRegExp';
 import i18n from '../localisation/LocaleController';
 import Parse, {
     define, optional, not, sequence, firstMatch, longestMatch,

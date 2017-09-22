@@ -1,5 +1,5 @@
 import { Class } from '../core/Core';
-import '../core/Number';  // For Number#mod
+import '../core/Number.prototype.mod';
 import Obj from '../foundation/Object';
 import '../foundation/Function.prototype.on';
 import '../foundation/Function.prototype.observes';

@@ -3,7 +3,8 @@
 import { Class, meta } from '../core/Core';
 import '../core/Array';  // For Array#include
 import Obj from '../foundation/Object';
-import RunLoop from '../foundation/RunLoop';  // + Function#invokeInRunLoop
+import RunLoop from '../foundation/RunLoop';
+import '../foundation/Function.prototype.invokeInRunLoop';
 import '../foundation/Function.prototype.on';
 import '../foundation/Function.prototype.observes';
 import XHR from './XHR';

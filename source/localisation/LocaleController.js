@@ -1,6 +1,6 @@
 /*global Intl */
 
-import '../core/String';  // For String#escapeRegExp
+import '../core/String.prototype.escapeRegExp';
 import Locale from './Locale'; // FIXME(circular-imports)
 
 /**

@@ -1,4 +1,4 @@
-import '../foundation/RunLoop';  // For Function#invokeInRunLoop
+import '../foundation/Function.prototype.invokeInRunLoop';
 import '../foundation/Enumerable';  // For Array#binarySearch
 import { getViewFromNode } from './activeViews';
 
