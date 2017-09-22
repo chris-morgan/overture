@@ -180,7 +180,12 @@ class Metadata {
     }
 }
 
-const meta = function ( object ) {
+// ’tis a Best Practice to use this rather than the method.
+const hasOwnProperty = Object.prototype.hasOwnProperty;
+
+const objectPrototype = Object.prototype;
+
+const makeMeta = function ( object ) {
     let data = object[ __meta__ ];
     if ( !data ) {
         data = new Metadata( object );
@@ -214,6 +219,53 @@ const meta = function ( object ) {
         object[ __meta__ ] = data;
     }
     return data;
+};
+
+const init = function ( object ) {
+    const prototype = Object.getPrototypeOf( object );
+    // Ensure all prototypes of the object are initialised first.
+    if ( prototype && prototype !== objectPrototype &&
+            !hasOwnProperty.call( prototype, __meta__ ) ) {
+        init( prototype );
+        // If prototype didn’t *need* any metadata of its own (i.e. special
+        // properties, or overriding special properties from its prototype),
+        // it won’t have an own property __meta__. We want it to use its
+        // parent’s __meta__, but we use the own property to determine that it
+        // is initialised. Hence, this odd-looking assignment: a noop when the
+        // value is defined already, but a creator of an own property in other
+        // cases. Note that the value may be `undefined` if there are no magic
+        // properties: this is correct and behaving as intended.
+        prototype[ __meta__ ] = prototype[ __meta__ ];
+    }
+    let metadata;
+
+    for ( const key in object ) {
+        if ( hasOwnProperty.call( object, key ) ) {
+            const superValue = prototype[ key ];
+            if ( superValue && superValue.__teardownProperty__ ) {
+                if ( !metadata ) {
+                    metadata = makeMeta( object );
+                }
+                superValue.__teardownProperty__( metadata, key, object );
+            }
+            const value = object[ key ];
+            if ( value && value.__setupProperty__ ) {
+                if ( !metadata ) {
+                    metadata = makeMeta( object );
+                }
+                value.__setupProperty__( metadata, key, object );
+            }
+        }
+    }
+};
+
+const meta = function ( object ) {
+    if ( !hasOwnProperty.call( object, __meta__ ) ) {
+        // This ensures that magic properties are set up, all through the
+        // object’s prototype.
+        init( object );
+    }
+    return makeMeta( object );
 };
 
 /**
@@ -260,9 +312,21 @@ const guid = function ( item ) {
 /**
     Function: O.mixin
 
-    Add properties to an object, doing the necessary setup and teardown to
-    ensure special properties (computed, bound, observed etc.), are registered
-    correctly.
+    Add properties to an object.
+
+    This function *used* to do the necessary setup and teardown to ensure
+    special properties (computed, bound, observed etc.) were registered
+    correctly, but this is now done in the O.Object constructor (thus, special
+    property setup is done lazily when you make the first instance of a class,
+    rather than at class construction time). Hence, this function is—
+
+    DEPRECATED. Use {Object.assign( object, extras )} instead if not specifying
+    doNotOverwrite, and rethink your approach if you are (OK, OK, so
+    `for ( const key in extras ) {
+        if ( !Object.prototype.hasOwnProperty.call( object, key ) ) {
+            object[ key ] = extras[ key ];
+        }
+    }` will work, but I bet you wanted it for nefarious purposes).
 
     Parameters:
         object         - {Object} The object to add properties to.
@@ -275,28 +339,15 @@ const guid = function ( item ) {
         {Object} Returns the object parameter.
 */
 const mixin = function ( object, extras, doNotOverwrite ) {
-    if ( extras ) {
-        const force = !doNotOverwrite;
-        let metadata;
-
-        for ( const key in extras ) {
-            if ( force || !object.hasOwnProperty( key ) ) {
-                const old = object[ key ];
-                const value = extras[ key ];
-                if ( old && old.__teardownProperty__ ) {
-                    if ( !metadata ) {
-                        metadata = meta( object );
-                    }
-                    old.__teardownProperty__( metadata, key, object );
-                }
-                if ( value && value.__setupProperty__ ) {
-                    if ( !metadata ) {
-                        metadata = meta( object );
-                    }
-                    value.__setupProperty__( metadata, key, object );
-                }
-                object[ key ] = value;
-            }
+    if ( window.console && console.warn ) {
+        console.warn( 'O.mixin is deprecated' );
+    }
+    if ( !doNotOverwrite ) {
+        return Object.assign( object, extras );
+    }
+    for ( const key in extras ) {
+        if ( !hasOwnProperty.call( object, key ) ) {
+            object[ key ] = extras[ key ];
         }
     }
     return object;
@@ -535,12 +586,12 @@ const Class = function ( params ) {
             mixins = [ mixins ];
         }
         for ( let i = 0, l = mixins.length; i < l; i += 1 ) {
-            mixin( init.prototype, mixins[i], false );
+            Object.assign( init.prototype, mixins[i] );
         }
         delete params.Mixin;
     }
 
-    mixin( init.prototype, params, false );
+    Object.assign( init.prototype, params );
 
     return init;
 };
@@ -557,6 +608,7 @@ const Class = function ( params ) {
     Also, if you were using this method to add anything but functions,
     (a) why were you doing that? and
     (b) you’ll need to use {mixin( this.prototype, methods, !force )} instead.
+        But that method is also deprecated, because (a).
 
     Parameters:
         methods - {Object} The methods or properties to add to the prototype.

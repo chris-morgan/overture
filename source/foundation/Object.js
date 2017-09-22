@@ -3,7 +3,7 @@ import BoundProps from './BoundProps';
 import ObservableProps from './ObservableProps';
 import EventTarget from './EventTarget';
 
-import { Class, meta, mixin } from '../core/Core';
+import { Class, meta } from '../core/Core';
 
 /**
     Class: O.Object
@@ -35,7 +35,7 @@ export default Class({
         this.isDestroyed = false;
 
         for ( let i = 0, l = arguments.length; i < l; i += 1 ) {
-            mixin( this, arguments[i] );
+            Object.assign( this, arguments[i] );
         }
 
         const metadata = meta( this );
