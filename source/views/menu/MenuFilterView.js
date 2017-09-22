@@ -1,6 +1,6 @@
 import { Class } from '../../core/Core';
 import Obj from '../../foundation/Object';
-import '../../foundation/EventTarget';  // For Function#on
+import '../../foundation/Function.prototype.on';
 import { bind, bindTwoWay } from '../../foundation/Binding';
 import { lookupKey } from '../../dom/DOMEvent';
 import View from '../View';

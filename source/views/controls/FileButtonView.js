@@ -1,5 +1,5 @@
 import { Class } from '../../core/Core';
-import '../../foundation/EventTarget';  // For Function#on
+import '../../foundation/Function.prototype.on';
 import { create as el } from '../../dom/Element';
 
 import ButtonView from './ButtonView';

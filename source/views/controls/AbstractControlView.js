@@ -1,7 +1,7 @@
 import { Class } from '../../core/Core';
-import '../../foundation/ComputedProps';  // For Function#property
-import '../../foundation/EventTarget';  // For Function#on
-import '../../foundation/ObservableProps';  // For Function#observes
+import '../../foundation/Function.prototype.property';
+import '../../foundation/Function.prototype.on';
+import '../../foundation/Function.prototype.observes';
 import View from '../View';
 import ViewEventsController from '../ViewEventsController';
 import { loc } from '../../localisation/LocaleController';

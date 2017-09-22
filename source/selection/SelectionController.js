@@ -1,7 +1,8 @@
 import { Class } from '../core/Core';
 import Obj from '../foundation/Object';
-import '../foundation/ObservableProps';  // For Function#observes
-import '../foundation/ComputedProps';  // For Function#property, #nocache
+import '../foundation/Function.prototype.observes';
+import '../foundation/Function.prototype.property';
+import '../foundation/Function.prototype.nocache';
 
 const SelectionController = Class({
 

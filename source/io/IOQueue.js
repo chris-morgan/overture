@@ -1,7 +1,7 @@
 import { Class } from '../core/Core';
 import '../core/Array';  // For Array#erase
 import Obj from '../foundation/Object';
-import '../foundation/EventTarget';  // For Function#on
+import '../foundation/Function.prototype.on';
 
 /**
     Module: IO

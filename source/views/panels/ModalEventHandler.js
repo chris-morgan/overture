@@ -1,6 +1,6 @@
 import { Class } from '../../core/Core';
 import Obj from '../../foundation/Object';
-import '../../foundation/EventTarget';  // For Function#on
+import '../../foundation/Function.prototype.on';
 import ScrollView from '../containers/ScrollView';
 
 const ModalEventHandler = Class({

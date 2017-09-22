@@ -1,7 +1,7 @@
 import { Class } from '../../core/Core';
 import Obj from '../../foundation/Object';
 import Enumerable from '../../foundation/Enumerable';
-import '../../foundation/ComputedProps';  // For Function#property
+import '../../foundation/Function.prototype.property';
 
 /**
     Class: O.RecordArray

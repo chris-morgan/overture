@@ -6,11 +6,11 @@ import Obj from '../foundation/Object';
 
     Maps from id to the view object for all views currently in a document.
 
-    Views with a manually specified ID are added using <O.ComputedProps#set>,
+    Views with a manually specified ID are added using <O.Object#set>,
     and so you can observe them.
 
     For reasons of performance, views with automatically-generated IDs ('v1',
-    'v372', &c.) bypass <O.ComputedProps#set>, and so they cannot be observed.
+    'v372', &c.) bypass <O.Object#set>, and so they cannot be observed.
     (I can’t think of any legitimate reasons for observing them anyway.)
 
     This object is maintained by <O.View#didEnterDocument> and

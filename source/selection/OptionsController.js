@@ -1,8 +1,8 @@
 import { Class } from '../core/Core';
 import '../core/Number';  // For Number#mod
 import Obj from '../foundation/Object';
-import '../foundation/EventTarget';  // For Function#on
-import '../foundation/ObservableProps';  // For Function#observes
+import '../foundation/Function.prototype.on';
+import '../foundation/Function.prototype.observes';
 import ObservableArray from '../foundation/ObservableArray';
 import { i18n } from '../localisation/LocaleController';
 

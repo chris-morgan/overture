@@ -1,6 +1,6 @@
 import { Class } from '../../core/Core';
-import '../../foundation/ComputedProps';  // For Function#property
-import '../../foundation/ObservableProps';  // For Function#observes
+import '../../foundation/Function.prototype.property';
+import '../../foundation/Function.prototype.observes';
 import { lookupKey } from '../../dom/DOMEvent';
 import { create as el } from '../../dom/Element';
 import { loc } from '../../localisation/LocaleController';

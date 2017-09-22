@@ -5,7 +5,7 @@ import { meta } from '../core/Core';
 
     The ObservableRange mixin adds support for observing an (integer-based)
     numerical range of keys to an observable object. The object is expected
-    to have the ObservableProps mixin applied and have a length property.
+    to extend <O.Object> and have a length property.
 */
 
 export default {
@@ -14,7 +14,7 @@ export default {
 
         Notifies observers that are observing a range which intersects the range
         that has changed. Also notifies any observers observing an individual
-        number (via <O.ObservableProps#addObserverForKey>) and any observers
+        number (via <O.Object#addObserverForKey>) and any observers
         looking out for a change to `[]` (enumerable content did change).
 
         Parameters:

@@ -4,7 +4,7 @@ import { Class } from '../core/Core';
 import '../core/Date';  // For Date#format
 import '../core/String';  // For String#escapeHTML
 import Obj from '../foundation/Object';
-import '../foundation/EventTarget';  // For Function#on
+import '../foundation/Function.prototype.on';
 import RunLoop from '../foundation/RunLoop';  // + Function#invokeInRunLoop
 
 /**

@@ -5,7 +5,7 @@ import '../core/Array';  // For Array#include
 import '../core/String';  // For String#contains
 import Obj from '../foundation/Object';
 import RunLoop from '../foundation/RunLoop';  // Also Function#queue
-import '../foundation/ComputedProps';  // For Function#property
+import '../foundation/Function.prototype.property';
 import { create as el } from '../dom/Element';
 import { create as createStylesheet } from '../dom/Stylesheet';
 import ScrollView from '../views/containers/ScrollView';

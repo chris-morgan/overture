@@ -1,7 +1,8 @@
 import { Class, meta, clone } from '../../core/Core';
 import Obj from '../../foundation/Object';
 import RunLoop from '../../foundation/RunLoop';
-import '../../foundation/ComputedProps';  // For Function#property, #nocache
+import '../../foundation/Function.prototype.property';
+import '../../foundation/Function.prototype.nocache';
 
 import { ToOneAttribute } from './toOne';
 import AttributeErrors from './AttributeErrors';

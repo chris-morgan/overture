@@ -35,7 +35,7 @@ const ViewEventsController = {
 
     /**
         Property (private): O.ViewEventsController._eventTargets
-        Type: [Number,O.EventTarget][]
+        Type: [Number,O.Object|O.EventTarget][]
 
         List of event targets to dispatch events to.
     */
@@ -54,7 +54,7 @@ const ViewEventsController = {
         the new one will be inserted such that it fires before the old one.
 
         Parameters:
-            eventTarget - {O.EventTarget} The event target to add.
+            eventTarget - {O.Object|O.EventTarget} The event target to add.
             priority    - {Number} The priority of the event target.
 
         Returns:
@@ -85,8 +85,8 @@ const ViewEventsController = {
         <O.ViewEventsController.addEventTarget>.
 
         Parameters:
-            eventTarget - {O.EventTarget} The event target to remove from the
-                          queue.
+            eventTarget - {O.Object|O.EventTarget} The event target to remove
+                          from the queue.
 
         Returns:
             {O.ViewEventsController} Returns self.

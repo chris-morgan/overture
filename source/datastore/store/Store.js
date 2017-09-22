@@ -6,7 +6,6 @@ import '../../core/Array';  // For Array#erase
 import RunLoop from '../../foundation/RunLoop';
 import Obj from '../../foundation/Object';
 import Event from '../../foundation/Event';
-import EventTarget from '../../foundation/EventTarget';
 import Record from '../record/Record';
 import RecordArray from '../query/RecordArray';
 import {
@@ -2719,12 +2718,13 @@ const Store = Class({
     },
 });
 
+const objPrototype = Obj.prototype;
 [ 'on', 'once', 'off' ].forEach( function ( property ) {
     Store.prototype[ property ] = function ( type, object, method ) {
         if ( typeof type !== 'string' ) {
             type = guid( type );
         }
-        return EventTarget[ property ].call( this, type, object, method );
+        return objPrototype[ property ].call( this, type, object, method );
     };
 });
 

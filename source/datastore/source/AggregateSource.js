@@ -1,6 +1,6 @@
 import { Class } from '../../core/Core';
 import '../../core/Array';  // For Array#erase
-import '../../foundation/ObservableProps';  // For Function#observes
+import '../../foundation/Function.prototype.observes';
 
 import Source from './Source';
 

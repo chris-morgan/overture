@@ -1,7 +1,7 @@
 import { Class, isEqual } from '../../core/Core';
-import '../../foundation/ComputedProps';  // For Function#property
-import '../../foundation/EventTarget';  // For Function#on
-import '../../foundation/ObservableProps';  // For Function#observes
+import '../../foundation/Function.prototype.property';
+import '../../foundation/Function.prototype.on';
+import '../../foundation/Function.prototype.observes';
 import { create as el } from '../../dom/Element';
 import AbstractControlView from './AbstractControlView';
 

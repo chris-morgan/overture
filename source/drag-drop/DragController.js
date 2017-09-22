@@ -1,7 +1,7 @@
 /*global document */
 
 import Obj from '../foundation/Object';
-import '../foundation/EventTarget';  // For Function#on
+import '../foundation/Function.prototype.on';
 import '../foundation/RunLoop';  // For Function#invokeInRunLoop
 import { lookupKey } from '../dom/DOMEvent';
 import ViewEventsController from '../views/ViewEventsController';
@@ -177,7 +177,8 @@ const DragController = new Obj({
     /**
         Method: O.DragController.handleEvent
 
-        Handler for native events. Fires an equivalent <O.EventTarget> event.
+        Handler for native events. Fires an equivalent event using
+        <O.Object#fire>.
 
         Parameters:
             event - {Event}

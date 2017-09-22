@@ -1,5 +1,5 @@
 import { Class } from '../../core/Core';
-import '../../foundation/ComputedProps';  // For Function#property
+import '../../foundation/Function.prototype.property';
 import '../../foundation/RunLoop';  // For Function#nextFrame
 import View from '../View';
 

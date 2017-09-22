@@ -46,8 +46,6 @@ import './core/RegExp';
 import './core/String';
 
 export { Binding, bind, bindTwoWay } from './foundation/Binding';
-export { default as BoundProps } from './foundation/BoundProps';
-export { default as ComputedProps } from './foundation/ComputedProps';
 export { default as Enumerable } from './foundation/Enumerable';
 export { default as Event } from './foundation/Event';
 export { default as EventTarget } from './foundation/EventTarget';
@@ -56,7 +54,6 @@ export { default as Heap } from './foundation/Heap';
 export { default as MutableEnumerable } from './foundation/MutableEnumerable';
 export { default as Object } from './foundation/Object';
 export { default as ObservableArray } from './foundation/ObservableArray';
-export { default as ObservableProps } from './foundation/ObservableProps';
 export { default as ObservableRange } from './foundation/ObservableRange';
 export { default as RunLoop } from './foundation/RunLoop';
 import * as Transform from './foundation/Transform';
@@ -66,6 +63,11 @@ import Promise from './foundation/Promise';
 self.Promise = Promise;
 // … as well as as `O.Promise`.
 export { Promise };
+import './foundation/Function.prototype.doNotNotify';
+import './foundation/Function.prototype.nocache';
+import './foundation/Function.prototype.observes';
+import './foundation/Function.prototype.on';
+import './foundation/Function.prototype.property';
 
 export { default as AnimatableView } from './animation/AnimatableView';
 export { default as Animation } from './animation/Animation';

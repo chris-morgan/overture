@@ -1,7 +1,7 @@
 import { Class } from '../../core/Core';
-import '../../foundation/ComputedProps';  // For Function#property
-import '../../foundation/ObservableProps';  // For Function#observes
-import '../../foundation/EventTarget';  // For Function#on
+import '../../foundation/Function.prototype.property';
+import '../../foundation/Function.prototype.observes';
+import '../../foundation/Function.prototype.on';
 import RunLoop from '../../foundation/RunLoop';
 import { lookupKey } from '../../dom/DOMEvent';
 import { create as el } from '../../dom/Element';

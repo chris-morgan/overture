@@ -7,8 +7,6 @@ import RunLoop from './RunLoop';
 /**
     Class: O.Binding
 
-    Includes: O.ComputedProps
-
     Bindings keep a property on one object in sync with a property on another.
     This may be a two way link, so a change on either updates the other, or it
     may only flow data in one direction. A transform may be applied to the data
@@ -16,7 +14,7 @@ import RunLoop from './RunLoop';
 
     To use, create a new instance then call <O.Binding#from>, <O.Binding#to> and
     <O.Binding#connect>. Connection will normally be handled by the
-    <O.BoundProps> class rather than directly.
+    <O.Object> class rather than directly.
 */
 
 /**

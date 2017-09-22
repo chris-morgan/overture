@@ -1,5 +1,5 @@
 import { Class, meta } from '../../core/Core';
-import '../../foundation/EventTarget';  // For Function#on
+import '../../foundation/Function.prototype.on';
 import { lookupKey } from '../../dom/DOMEvent';
 import { setStyle, create as el } from '../../dom/Element';
 import RootView from '../RootView';

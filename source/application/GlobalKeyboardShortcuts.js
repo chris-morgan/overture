@@ -1,6 +1,6 @@
 import { Class } from '../core/Core';
 import Obj from '../foundation/Object';
-import '../foundation/EventTarget';  // For Function#on
+import '../foundation/Function.prototype.on';
 import { isMac } from '../ua/UA';
 import { lookupKey } from '../dom/DOMEvent';
 import RichTextView from '../views/controls/RichTextView';

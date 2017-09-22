@@ -2,8 +2,8 @@ import { Class } from '../core/Core';
 import '../core/String';  // For String#capitalise
 import Obj from '../foundation/Object';
 import RunLoop from '../foundation/RunLoop';
-import '../foundation/ObservableProps';  // For Function#observes
-import '../foundation/ComputedProps';  // For Function#property
+import '../foundation/Function.prototype.observes';
+import '../foundation/Function.prototype.property';
 import {
     create as el,
     forView,
@@ -479,7 +479,7 @@ const View = Class({
 
     /**
         Property: O.View#nextEventTarget
-        Type: O.EventTarget|null
+        Type: O.Object|O.EventTarget|null
 
         The next object to bubble events to. Unless overriden, this will be the
         parent view of this view.

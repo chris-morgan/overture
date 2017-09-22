@@ -2,10 +2,11 @@ import { Class, guid, meta } from '../../core/Core';
 import Obj from '../../foundation/Object';
 import ObservableRange from '../../foundation/ObservableRange';
 import Enumerable from '../../foundation/Enumerable';
-import '../../foundation/EventTarget';  // For Function#on
-import '../../foundation/ObservableProps';  // For Function#observes
+import '../../foundation/Function.prototype.on';
+import '../../foundation/Function.prototype.observes';
 import '../../foundation/RunLoop';  // For Function#queue
-import '../../foundation/ComputedProps';  // For Function#property, #nocache
+import '../../foundation/Function.prototype.property';
+import '../../foundation/Function.prototype.nocache';
 
 import {
     EMPTY,

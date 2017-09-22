@@ -2,7 +2,7 @@
 
 import { Class } from '../core/Core';
 import Obj from '../foundation/Object';
-import '../foundation/ObservableProps';  // For Function#observes
+import '../foundation/Function.prototype.observes';
 import '../foundation/RunLoop';  // For Function#invokeInRunLoop, #queue
 
 /**

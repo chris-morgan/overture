@@ -31,7 +31,7 @@
                     metadata object has been created) until a new computed
                     property is added or removed from the object.
                     The allDependents map is calculated lazily as required; you
-                    should use the <O.ComputedProps#propertiesDependentOnKey>
+                    should use the <O.Object#propertiesDependentOnKey>
                     method to fetch the list.
     cache         - A mapping of keys to the last returned value of cacheable
                     computed properties.
@@ -41,10 +41,9 @@
     changed       - Null, or if the depth property is >1, an object mapping keys
                     or properties that have changed value, to an object holding
                     the old and possibly the new value.
-    depth         - The number of calls to
-                    <O.ObservableProps#beginPropertyChanges> without a
-                    corresponding call to
-                    <O.ObservableProps#endPropertyChanges>.
+    depth         - The number of calls to <O.Object#beginPropertyChanges>
+                    without a corresponding call to
+                    <O.Object#endPropertyChanges>.
     pathObservers - A mapping of keys to a list of paths they observe.
     bindings      - A mapping of keys to Binding objects.
     inits         - A mapping of mixin names to a reference count of the number

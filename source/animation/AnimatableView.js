@@ -1,4 +1,4 @@
-import '../foundation/ComputedProps';  // For Function#property
+import '../foundation/Function.prototype.property';
 import { setStyle } from '../dom/Element';
 import Easing from './Easing';
 import StyleAnimation from './StyleAnimation';

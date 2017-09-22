@@ -3,8 +3,8 @@
 import { Class } from '../../core/Core';
 import { bind } from '../../foundation/Binding';
 import RunLoop from '../../foundation/RunLoop';
-import '../../foundation/ComputedProps';  // For Function#property
-import '../../foundation/ObservableProps';  // For Function#observes
+import '../../foundation/Function.prototype.property';
+import '../../foundation/Function.prototype.observes';
 import View from '../View';
 import { forView } from '../../dom/Element';
 

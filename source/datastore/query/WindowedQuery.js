@@ -1,7 +1,8 @@
 import { Class, meta, isEqual } from '../../core/Core';
 import '../../foundation/Enumerable';  // For Array#binarySearch
-import '../../foundation/ObservableProps';  // For Function#observes
-import '../../foundation/ComputedProps';  // For Function#property, #nocache
+import '../../foundation/Function.prototype.observes';
+import '../../foundation/Function.prototype.property';
+import '../../foundation/Function.prototype.nocache';
 import {
     EMPTY,
     READY,

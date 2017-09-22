@@ -1,9 +1,10 @@
 /*global document */
 
 import { Class } from '../../core/Core';
-import '../../foundation/ComputedProps';  // For Function#property, #nocache
-import '../../foundation/EventTarget';  // For Function#on
-import '../../foundation/ObservableProps';  // For Function#observes
+import '../../foundation/Function.prototype.property';
+import '../../foundation/Function.prototype.nocache';
+import '../../foundation/Function.prototype.on';
+import '../../foundation/Function.prototype.observes';
 import { browser } from '../../ua/UA';
 import { nearest, create as el } from '../../dom/Element';
 import { lookupKey } from '../../dom/DOMEvent';

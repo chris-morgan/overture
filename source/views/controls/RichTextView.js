@@ -1,9 +1,10 @@
 /*global window, document, FileReader, Squire */
 
 import { Class } from '../../core/Core';
-import '../../foundation/ComputedProps';  // For Function#property, #nocache
-import '../../foundation/EventTarget';  // For Function#on
-import '../../foundation/ObservableProps';  // For Function#observes
+import '../../foundation/Function.prototype.property';
+import '../../foundation/Function.prototype.nocache';
+import '../../foundation/Function.prototype.on';
+import '../../foundation/Function.prototype.observes';
 import { isEqualToValue } from '../../foundation/Transform';
 import { bind, bindTwoWay } from '../../foundation/Binding';
 import RunLoop from '../../foundation/RunLoop';  // Also Function#nextFrame

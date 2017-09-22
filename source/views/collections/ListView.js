@@ -1,7 +1,7 @@
 import { Class, guid } from '../../core/Core';
 import { bind } from '../../foundation/Binding';
-import '../../foundation/ComputedProps';  // For Function#property
-import '../../foundation/ObservableProps';  // For Function#observes
+import '../../foundation/Function.prototype.property';
+import '../../foundation/Function.prototype.observes';
 import { appendChildren } from '../../dom/Element';
 import { browser } from '../../ua/UA';
 import View from '../View';

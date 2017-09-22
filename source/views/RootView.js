@@ -1,5 +1,5 @@
 import { Class } from '../core/Core';
-import '../foundation/EventTarget';  // For Function#on
+import '../foundation/Function.prototype.on';
 import '../foundation/RunLoop';  // For Function#invokeInRunLoop
 import { isIOS } from '../ua/UA';
 

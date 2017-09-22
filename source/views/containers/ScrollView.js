@@ -1,8 +1,8 @@
 import { Class } from '../../core/Core';
 import RunLoop from '../../foundation/RunLoop';  // Also Function#queue
-import '../../foundation/ComputedProps';  // For Function#property
-import '../../foundation/EventTarget';  // For Function#on
-import '../../foundation/ObservableProps';  // For Function#observes
+import '../../foundation/Function.prototype.property';
+import '../../foundation/Function.prototype.on';
+import '../../foundation/Function.prototype.observes';
 import { create as el, setStyle, appendChildren } from '../../dom/Element';
 import Animation from '../../animation/Animation';
 import Tap from '../../touch/Tap';

@@ -1,5 +1,5 @@
 import { Class } from '../../core/Core';
-import '../../foundation/ObservableProps';  // For Function#observes
+import '../../foundation/Function.prototype.observes';
 import View from '../View';
 
 /**
