@@ -526,13 +526,13 @@ const View = Class({
 
     /**
         Property: O.View#positioning
-        Type: String
-        Default: 'relative'
+        Type: String|undefined
+        Default: undefined
 
         What type of positioning to use to layout the DOM node of this view.
-        Will normally be either 'relative' (the default) or 'absolute'.
+        Defaults to none, allowing it to be set in CSS.
     */
-    positioning: 'relative',
+    positioning: undefined,
 
     /**
         Property: O.View#layout
