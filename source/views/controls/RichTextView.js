@@ -51,7 +51,10 @@ const emailRegExp = RegExp.email;
 const urlRegExp =
     /^(?:https?:\/\/)?[\w.]+[.][a-z]{2,4}(?:\/[^\s()<>]+|\([^\s()<>]+\))*/i;
 
-const popOver = new PopOverView();
+let popOver;
+const getPopOver = function () {
+    return popOver || ( popOver = new PopOverView() );
+};
 
 const TOOLBAR_HIDDEN = 0;
 const TOOLBAR_INLINE = 1;
@@ -90,7 +93,7 @@ const URLPickerView = Class({
                 new ButtonView({
                     type: 'v-Button--destructive v-Button--size13',
                     label: loc( 'Cancel' ),
-                    target: popOver,
+                    target: getPopOver(),
                     method: 'hide',
                 }),
                 new ButtonView({
@@ -834,7 +837,7 @@ const RichTextView = Class({
         if ( buttonView.getParent( MenuView ) ) {
             buttonView = this.get( 'toolbarView' ).getView( 'overflow' );
         }
-        popOver.show({
+        getPopOver().show({
             view: this.get( 'fontSizeMenuView' ),
             alignWithView: buttonView,
             alignEdge: 'centre',
@@ -867,7 +870,7 @@ const RichTextView = Class({
         if ( buttonView.getParent( MenuView ) ) {
             buttonView = this.get( 'toolbarView' ).getView( 'overflow' );
         }
-        popOver.show({
+        getPopOver().show({
             view: this.get( 'fontFaceMenuView' ),
             alignWithView: buttonView,
             alignEdge: 'centre',
@@ -915,7 +918,7 @@ const RichTextView = Class({
         if ( buttonView.getParent( MenuView ) ) {
             buttonView = this.get( 'toolbarView' ).getView( 'overflow' );
         }
-        popOver.show({
+        getPopOver().show({
             view: this.get( 'textColorMenuView' ),
             alignWithView: buttonView,
             alignEdge: 'centre',
@@ -930,7 +933,7 @@ const RichTextView = Class({
         if ( buttonView.getParent( MenuView ) ) {
             buttonView = this.get( 'toolbarView' ).getView( 'overflow' );
         }
-        popOver.show({
+        getPopOver().show({
             view: this.get( 'textColorMenuView' ),
             alignWithView: buttonView,
             alignEdge: 'centre',
@@ -966,7 +969,7 @@ const RichTextView = Class({
                     }
                 }
                 richTextView.makeLink( url );
-                popOver.hide();
+                getPopOver().hide();
             },
         });
     }.property(),
@@ -998,7 +1001,7 @@ const RichTextView = Class({
                     url = 'http://' + url;
                 }
                 richTextView.insertImage( url );
-                popOver.hide();
+                getPopOver().hide();
             },
         });
     }.property(),
@@ -1015,7 +1018,7 @@ const RichTextView = Class({
             buttonView = this.get( 'toolbarView' ).getView( 'overflow' );
         }
         const richTextView = this;
-        popOver.show({
+        getPopOver().show({
             view,
             alignWithView: buttonView,
             showCallout: true,
