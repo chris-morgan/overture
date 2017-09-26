@@ -1,10 +1,6 @@
-import { Class } from '../core/Core';
 import Obj from './Object';
 import ObservableRange from './ObservableRange';
-import Enumerable from './Enumerable';
 import MutableEnumerable from './MutableEnumerable';
-import './Function.prototype.property';
-import './Function.prototype.nocache';
 
 const splice = Array.prototype.splice;
 const slice = Array.prototype.slice;
@@ -14,19 +10,16 @@ const slice = Array.prototype.slice;
 
     Extends: O.Object
 
-    Includes: O.ObservableRange, O.Enumerable, O.MutableEnumerable
+    Includes: O.ObservableRange, O.MutableEnumerable
+
+    Implements: O.Enumerable
 
     The ObservableArray class provides an object with the same interface as the
     standard array but with the difference that properties or even ranges can be
     observed. Note, all access must be via getObjectAt/setObjectAt, not direct
     array[i].
 */
-const ObservableArray = Class({
-
-    Extends: Obj,
-
-    Mixin: [ ObservableRange, Enumerable, MutableEnumerable ],
-
+export default class ObservableArray extends Obj {
     /**
         Constructor: O.ObservableArray
 
@@ -34,14 +27,11 @@ const ObservableArray = Class({
             array   - {Array} (optional) The initial contents of the array.
             ...mixins - {Object} (optional)
     */
-    // eslint-disable-next-line object-shorthand
-    init: function ( array /*, ...mixins */) {
+    constructor ( array, ...mixins ) {
+        super( ...mixins );
         this._array = array || [];
         this._length = this._array.length;
-
-        ObservableArray.parent.constructor.apply( this,
-            Array.prototype.slice.call( arguments, 1 ) );
-    },
+    }
 
     /**
         Property: O.ObservableArray#[]
@@ -53,39 +43,41 @@ const ObservableArray = Class({
         of the new array is checked for equality with that of the old array to
         ensure accurate notification of the changed range.
     */
-    '[]': function ( array ) {
-        if ( array ) {
-            const oldArray = this._array;
-            const oldLength = this._length;
-            const newLength = array.length;
-            let start = 0;
-            let end = newLength;
-
-            this._array = array;
-            this._length = newLength;
-
-            while ( ( start < newLength ) &&
-                    ( array[ start ] === oldArray[ start ] ) ) {
-                start += 1;
-            }
-            if ( newLength === oldLength ) {
-                let last = end - 1;
-                while ( ( end > start ) &&
-                        ( array[ last ] === oldArray[ last ] ) ) {
-                    end = last;
-                    last -= 1;
-                }
-            } else {
-                end = Math.max( oldLength, newLength );
-                this.propertyDidChange( 'length', oldLength, newLength );
-            }
-
-            if ( start !== end ) {
-                this.rangeDidChange( start, end );
-            }
-        }
+    get '[]' () {
         return this._array.slice();
-    }.property(),
+    }
+
+    set '[]' ( array ) {
+        const oldArray = this._array;
+        const oldLength = this._length;
+        const newLength = array.length;
+        let start = 0;
+        let end = newLength;
+
+        this._array = array;
+        this._length = newLength;
+
+        while ( ( start < newLength ) &&
+                ( array[ start ] === oldArray[ start ] ) ) {
+            start += 1;
+        }
+        if ( newLength === oldLength ) {
+            let last = end - 1;
+            while ( ( end > start ) &&
+                    ( array[ last ] === oldArray[ last ] ) ) {
+                end = last;
+                last -= 1;
+            }
+        } else {
+            end = Math.max( oldLength, newLength );
+            this.propertyDidChange( 'length', oldLength, newLength );
+        }
+
+        if ( start !== end ) {
+            this.rangeDidChange( start, end );
+        }
+        this.propertyDidChange( '[]', oldArray, array );
+    }
 
     /**
         Method: O.ObservableArray#getObjectAt
@@ -100,7 +92,7 @@ const ObservableArray = Class({
     */
     getObjectAt ( index ) {
         return this._array[ index ];
-    },
+    }
 
     /**
         Property: O.ObservableArray#length
@@ -108,18 +100,21 @@ const ObservableArray = Class({
 
         The length of the array.
     */
-    length: function ( value ) {
-        let length = this._length;
-        if ( typeof value === 'number' && value !== length ) {
-            this._array.length = value;
+    get length () {
+        return this._length;
+    }
+
+    set length ( value ) {
+        const oldLength = this._length;
+        if ( typeof value === 'number' && value !== oldLength ) {
+            this._array.oldLength = value;
             this._length = value;
-            if ( value < length ) {
-                this.rangeDidChange( value, length );
+            if ( value < oldLength ) {
+                this.rangeDidChange( value, oldLength );
             }
-            length = value;
+            this.propertyDidChange( 'length', oldLength, value );
         }
-        return length;
-    }.property().nocache(),
+    }
 
     /**
         Method: O.ObservableArray#setObjectAt
@@ -142,7 +137,7 @@ const ObservableArray = Class({
         }
         this.rangeDidChange( index );
         return this;
-    },
+    }
 
     /**
         Method: O.ObservableArray#replaceObjectsAt
@@ -183,7 +178,57 @@ const ObservableArray = Class({
             this.rangeDidChange( index, index + numberRemoved );
         }
         return removed || [];
-    },
+    }
+
+    // --- Enumerable (more efficient implementations)
+
+    first () {
+        return this._array.first();
+    }
+
+    last () {
+        return this._array.last();
+    }
+
+    indexOf ( item, from ) {
+        return this._array.indexOf( item, from );
+    }
+
+    lastIndexOf ( item, from ) {
+        return this._array.lastIndexOf( item, from );
+    }
+
+    binarySearch ( value, comparator ) {
+        return this._array.binarySearch( value, comparator );
+    }
+
+    contains ( value, comparator ) {
+        return this._array.contains( value, comparator );
+    }
+
+    find ( fn, bind ) {
+        return this._array.find( fn, bind );
+    }
+
+    forEach ( fn, bind ) {
+        return this._array.forEach( fn, bind );
+    }
+
+    filter ( fn, bind ) {
+        return this._array.filter( fn, bind );
+    }
+
+    reduce ( fn, initial ) {
+        return this._array.reduce( fn, initial );
+    }
+
+    every ( fn, bind ) {
+        return this._array.every( fn, bind );
+    }
+
+    some ( fn, bind ) {
+        return this._array.some( fn, bind );
+    }
 
     // :: Mutation methods =====================================================
 
@@ -203,7 +248,7 @@ const ObservableArray = Class({
         this._array.sort( comparefn );
         this.rangeDidChange( 0, this._length );
         return this;
-    },
+    }
 
     /**
         Method: O.ObservableArray#reverse
@@ -217,7 +262,7 @@ const ObservableArray = Class({
         this._array.reverse();
         this.rangeDidChange( 0, this._length );
         return this;
-    },
+    }
 
     // :: Accessor methods =====================================================
 
@@ -240,7 +285,7 @@ const ObservableArray = Class({
             args[i] = item instanceof ObservableArray ? item._array : item;
         }
         return Array.prototype.concat.apply( this._array, args );
-    },
+    }
 
     /**
         Method: O.ObservableArray#join
@@ -257,7 +302,7 @@ const ObservableArray = Class({
     */
     join ( separator ) {
         return this._array.join( separator );
-    },
+    }
 
     /**
         Method: O.ObservableArray#slice
@@ -275,7 +320,10 @@ const ObservableArray = Class({
     */
     slice ( start, end ) {
         return this._array.slice( start, end );
-    },
-});
+    }
+}
 
-export default ObservableArray;
+Object.assign( ObservableArray.prototype, ObservableRange, MutableEnumerable );
+
+// (Needed for compatibility with subclasses that use `O.Class`.)
+ObservableArray.prototype.init = ObservableArray;
