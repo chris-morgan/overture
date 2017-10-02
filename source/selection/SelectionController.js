@@ -2,7 +2,6 @@ import { Class } from '../core/Core';
 import Obj from '../foundation/Object';
 import '../foundation/Function.prototype.observes';
 import '../foundation/Function.prototype.property';
-import '../foundation/Function.prototype.nocache';
 
 const SelectionController = Class({
 
@@ -69,9 +68,9 @@ const SelectionController = Class({
 
     // ---
 
-    selectedStoreKeys: function () {
+    get selectedStoreKeys () {
         return Object.keys( this._selectedStoreKeys );
-    }.property().nocache(),
+    },
 
     isStoreKeySelected ( storeKey ) {
         return !!this._selectedStoreKeys[ storeKey ];
