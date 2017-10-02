@@ -1,3 +1,4 @@
+import __meta__ from '../core/Core';
 import Obj from './Object';
 import ObservableRange from './ObservableRange';
 import MutableEnumerable from './MutableEnumerable';
@@ -29,6 +30,12 @@ export default class ObservableArray extends Obj {
     */
     constructor ( array, ...mixins ) {
         super( ...mixins );
+
+        // BREAKING CHANGE: the [] property was defined before calling super
+        // before, but now it’s set up after. This is going to be catastrophic
+        // to any bindings defined on the ObservableArray that depend on [].
+        // TODO assess the impact of this (I have no idea whether it’s a big
+        // deal or not).
         this._array = array || [];
         this._length = this._array.length;
     }
@@ -44,7 +51,8 @@ export default class ObservableArray extends Obj {
         ensure accurate notification of the changed range.
     */
     get '[]' () {
-        return this._array.slice();
+        const cache = this[ __meta__ ].cache;
+        return cache[ '[]' ] || ( cache[ '[]' ] = this._array.slice() );
     }
 
     set '[]' ( array ) {
@@ -76,7 +84,19 @@ export default class ObservableArray extends Obj {
         if ( start !== end ) {
             this.rangeDidChange( start, end );
         }
-        this.propertyDidChange( '[]', oldArray, array );
+
+        // DIFFERENCE IN BEHAVIOUR: `x.set( '[]', foo )` would return a slice of
+        // foo rather than foo. With `x[ '[]' ] = foo`, the value of the
+        // expression is `foo`, and that’s unavoidable. I don’t think this is an
+        // issue, because mutating the underlying array directly was unsupported
+        // anyway. Still, it is worthwhile considering the alternative of having
+        // the ObservableArray.[] setter take ownership of the object passed to
+        // it, storing it directly rather than slicing it. If that were done,
+        // the whole cache dance could disappear as well.
+        const cache = this[ __meta__ ].cache;
+        const oldValue = cache[ '[]' ];
+        cache[ '[]' ] = array = array.slice();
+        this.propertyDidChange( '[]', oldValue, array );
     }
 
     /**

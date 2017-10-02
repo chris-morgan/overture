@@ -595,4 +595,4 @@ const Class = function ( params ) {
     return init;
 };
 
-export { meta, guid, mixin, extend, merge, clone, isEqual, Class };
+export { __meta__, meta, guid, mixin, extend, merge, clone, isEqual, Class };
