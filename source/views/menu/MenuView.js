@@ -139,8 +139,9 @@ const MenuView = Class({
                 controller,
             }) : null,
             this.scrollView = new ScrollView({
-                positioning: 'relative',
-                layout: {},
+                layout: {
+                    position: 'relative',
+                },
                 childViews: [
                     new OptionsListView({
                         controller,

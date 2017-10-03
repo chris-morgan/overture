@@ -525,16 +525,6 @@ const View = Class({
     // --- Layout ---
 
     /**
-        Property: O.View#positioning
-        Type: String|undefined
-        Default: undefined
-
-        What type of positioning to use to layout the DOM node of this view.
-        Defaults to none, allowing it to be set in CSS.
-    */
-    positioning: undefined,
-
-    /**
         Property: O.View#layout
         Type: Object
         Default: {}
@@ -555,9 +545,15 @@ const View = Class({
         properties change.
     */
     layerStyles: function () {
-        return Object.assign({
-            position: this.get( 'positioning' ),
-        }, this.get( 'layout' ) );
+        const values = {};
+        const position = this.get( 'positioning' );
+        if ( position ) {
+            if ( window.console && console.warn ) {
+                console.warn( 'View#positioning is deprecated' );
+            }
+            values.position = position;
+        }
+        return Object.assign( values, this.get( 'layout' ) );
     }.property( 'layout', 'positioning' ),
 
     /**
@@ -1279,6 +1275,7 @@ const View = Class({
 // Expose Globals:
 
 View.LAYOUT_FILL_PARENT = {
+    position: 'absolute',
     top: 0,
     left: 0,
     bottom: 0,

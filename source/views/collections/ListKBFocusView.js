@@ -31,8 +31,6 @@ const ListKBFocusView = Class({
 
     className: 'v-ListKBFocus',
 
-    positioning: 'absolute',
-
     layoutIndex: function () {
         const index = this.get( 'index' );
         const list = this.get( 'singleSelection' ).get( 'content' );
@@ -47,6 +45,7 @@ const ListKBFocusView = Class({
         const itemHeight = this.get( 'itemHeight' );
         const index = this.get( 'layoutIndex' );
         return {
+            position: 'absolute',
             visibility: index < 0 ? 'hidden' : 'visible',
             top: index < 0 ? 0 : itemHeight * index,
             height: itemHeight,

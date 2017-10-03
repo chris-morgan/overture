@@ -218,14 +218,12 @@ const TextView = Class({
     }.property( 'type', 'isExpanding', 'isHighlighted',
         'isFocused', 'isValid', 'isDisabled' ),
 
-    layerStyles: function () {
-        return Object.assign({
-            position: this.get( 'positioning' ),
+    layout: function () {
+        return {
             display: this.get( 'isMultiline' ) ? 'block' : 'inline-block',
             cursor: 'text',
-            userSelect: 'text',
-        }, this.get( 'layout' ) );
-    }.property( 'layout', 'positioning' ),
+        };
+    }.property( 'isMultiline' ),
 
     /**
         Method: O.TextView#draw

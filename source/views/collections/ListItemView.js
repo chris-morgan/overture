@@ -29,8 +29,6 @@ const ListItemView = Class({
         ListItemView.parent.constructor.call( this, mixin );
     },
 
-    positioning: 'absolute',
-
     layout: function () {
         const index = this.get( 'index' );
         const itemHeight = this.get( 'itemHeight' );
@@ -38,6 +36,7 @@ const ListItemView = Class({
         const isNew = animateIn && !this.get( 'isInDocument' );
         const y = ( index - ( isNew ? 1 : 0 ) ) * itemHeight;
         return {
+            position: 'absolute',
             top: y,
             opacity: animateIn ? isNew ? 0 : 1 : undefined,
         };

@@ -77,19 +77,11 @@ const ScrollView = Class({
     showScrollbarY: true,
 
     /**
-        Property: O.ScrollView#positioning
-        Type: String
-        Default: 'absolute'
-
-        Overrides default in <O.View#positioning>.
-    */
-    positioning: 'absolute',
-
-    /**
         Property: O.ScrollView#layout
         Type: Object
         Default:
                 {
+                    position: 'absolute',
                     top: 0,
                     left: 0,
                     width: '100%',
@@ -112,12 +104,12 @@ const ScrollView = Class({
         styles.overflowY = this.get( 'showScrollbarY' ) ? 'auto' : 'hidden';
         styles.WebkitOverflowScrolling = 'touch';
         return styles;
-    }.property( 'layout', 'positioning', 'showScrollbarX', 'showScrollbarY' ),
+    }.property( 'layout', 'showScrollbarX', 'showScrollbarY' ),
 
     isFixedDimensions: function () {
-        const positioning = this.get( 'positioning' );
-        return positioning === 'absolute' || positioning === 'fixed';
-    }.property( 'positioning' ),
+        const position = this.get( 'layerStyles' ).position;
+        return position === 'absolute' || position === 'fixed';
+    }.property( 'layerStyles' ),
 
     /**
         Property: O.ScrollView#keys

@@ -720,7 +720,6 @@ var TodoView = O.Class({
         var todo = this.get( 'content' );
         return [
             new O.CheckboxView({
-                positioning: 'absolute',
                 /* Two-way bindings are rarely needed, but here we use one to
                    keep the checkbox in sync with the todo state, but also allow
                    you to use the checkbox to update the todo.
@@ -840,7 +839,6 @@ var appView = new O.View({
     className: 'v-App',
     childViews: [
         new O.LabelView({
-            positioning: 'absolute',
             className: 'v-App-title',
             value: 'Todo'
         }),

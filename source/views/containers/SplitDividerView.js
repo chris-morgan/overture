@@ -111,15 +111,6 @@ const SplitDividerView = Class({
     }.property( 'flex', 'direction' ),
 
     /**
-        Property: O.SplitDividerView#positioning
-        Type: String
-        Default: 'absolute'
-
-        Overrides default in O.View#positioning
-    */
-    positioning: 'absolute',
-
-    /**
         Property: O.SplitDividerView#layout
         Type: Object
 
@@ -131,12 +122,14 @@ const SplitDividerView = Class({
         let styles;
         if ( this.get( 'direction' ) === VERTICAL ) {
             styles = {
+                position: 'absolute',
                 top: 0,
                 bottom: 0,
                 width: thickness,
             };
         } else {
             styles = {
+                position: 'absolute',
                 left: 0,
                 right: 0,
                 height: thickness,

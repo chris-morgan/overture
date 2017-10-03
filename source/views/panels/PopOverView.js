@@ -30,8 +30,6 @@ const PopOverView = Class({
             ' v-PopOverContainer--a' + alignEdge.charAt( 0 );
     }.property( 'options' ),
 
-    positioning: 'absolute',
-
     ariaAttributes: {
         modal: 'true',
     },
@@ -76,7 +74,9 @@ const PopOverView = Class({
         const popOverEl = this._popOver;
         const calloutEl = this._callout;
         const safeAreaInsetBottom = rootView.get( 'safeAreaInsetBottom' );
-        const layout = {};
+        const layout = {
+            position: 'absolute',
+        };
         let calloutStyle = '';
         let aFlex, bFlex, startDistance, endDistance;
 

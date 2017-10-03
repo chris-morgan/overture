@@ -62,6 +62,7 @@ const TOOLBAR_AT_SELECTION = 2;
 const TOOLBAR_AT_TOP = 3;
 
 const hiddenFloatingToolbarLayout = {
+    position: 'absolute',
     top: 0,
     left: 0,
     maxWidth: '100%',
@@ -454,6 +455,7 @@ const RichTextView = Class({
         }
         const position = getPosition( node, this.get( 'layer' ) );
         this.set( 'floatingToolbarLayout', {
+            position: 'absolute',
             top: 0,
             left: 0,
             maxWidth: '100%',
@@ -502,10 +504,10 @@ const RichTextView = Class({
 
         return new ToolbarView({
             className: 'v-Toolbar v-RichText-toolbar',
-            positioning: 'absolute',
             layout: showToolbar === TOOLBAR_AT_SELECTION ?
                 bind( this, 'floatingToolbarLayout' ) :
                 {
+                    position: 'absolute',
                     overflow: 'hidden',
                     zIndex: 1,
                     top: 0,
