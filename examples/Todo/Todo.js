@@ -134,8 +134,8 @@ App.source.handle( TodoList, {
     fetch: 'TodoList',
     commit: 'TodoList',
     // Response handlers
-    'TodoList/get': function ( args ) {
-        this.didFetch( TodoList, args, true );
+    'TodoList/get': function ( args, _, requestArgs ) {
+        this.didFetch( TodoList, args, requestArgs.ids === null );
     },
     'TodoList/set': function ( args ) {
         this.didCommit( TodoList, args );
@@ -186,8 +186,8 @@ App.source.handle( Todo, {
     fetch: 'Todo',
     commit: 'Todo',
     // Response handlers
-    'Todo/get': function ( args ) {
-        this.didFetch( Todo, args, true );
+    'Todo/get': function ( args, _, requestArgs ) {
+        this.didFetch( Todo, args, requestArgs.ids === null );
     },
     'Todo/set': function ( args ) {
         this.didCommit( Todo, args );
