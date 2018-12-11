@@ -646,8 +646,8 @@ var TodoView = O.Class({
 
     Extends: O.ListItemView,
 
-    /* By mixing in O.AnimatableView, any changes to the "layout" property will
-       automatically be animated. Mixing in O.Draggable allows a drag to be
+    /* By mixing in O.AnimatableView, any changes to the "layerStyles" property
+       will automatically be animated. Mixing in O.Draggable allows a drag to be
        initiated on the view.
     */
     Mixin: [ O.AnimatableView, O.Draggable ],
@@ -689,7 +689,7 @@ var TodoView = O.Class({
     /* When dragging, we'll set the layout manually from the drag handlers.
        Otherwise, the layout purely depends on how far down the list we are.
     */
-    layout: function ( y ) {
+    layerStyles: function ( y ) {
         if ( y === undefined ) {
             y = ( this.get( 'index' ) * this.get( 'itemHeight' ) );
         }
@@ -700,13 +700,13 @@ var TodoView = O.Class({
     }.property( 'isDragging' ),
 
     /* We would normally make index one of the computed property dependencies
-       of layout, but because we don't want it to reset while dragging, we
+       of layerStyles, but because we don't want it to reset while dragging, we
        do it manually in this observer instead (automatically triggered
        whenever the index property chagnes).
     */
-    invalidateLayout: function () {
+    invalidateLayerStyles: function () {
         if ( !this.get( 'isDragging' ) ) {
-            this.computedPropertyDidChange( 'layout' );
+            this.computedPropertyDidChange( 'layerStyles' );
         }
     }.observes( 'index' ),
 
@@ -822,7 +822,7 @@ var TodoView = O.Class({
                 this.get( 'list' ), this.get( 'content' ), newIndex
             );
         }
-        this.set( 'layout', y );
+        this.set( 'layerStyles', y );
     },
 
     /* Cleanup on drag end */
@@ -854,7 +854,7 @@ var appView = new O.View({
                 }),
                 new O.ButtonView({
                     icon: 'icon-rotate-left',
-                    layout: { marginLeft: 10 },
+                    layerStyles: { marginLeft: 10 },
                     isDisabled: O.bind( App.undoManager, 'canUndo',
                         O.Transform.invert ),
                     label: 'Undo',
@@ -871,7 +871,7 @@ var appView = new O.View({
                     icon: O.Element.create( 'i', {
                         className: 'icon icon-search'
                     }),
-                    layout: { width: 200 },
+                    layerStyles: { width: 200 },
                     placeholder: 'Search',
                     shortcut: '/',
                     value: O.bindTwoWay( App.state, 'search' )

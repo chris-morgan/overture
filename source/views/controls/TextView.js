@@ -218,7 +218,7 @@ const TextView = Class({
     }.property( 'type', 'isExpanding', 'isHighlighted',
         'isFocused', 'isValid', 'isDisabled' ),
 
-    layout: function () {
+    layerStyles: function () {
         return {
             display: this.get( 'isMultiline' ) ? 'block' : 'inline-block',
             cursor: 'text',

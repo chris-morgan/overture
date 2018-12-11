@@ -37,9 +37,7 @@ function overturePerf ( options ) {
 
         className: 'row',
 
-        layout: {
-            position: 'static',
-        },
+        layerStyles: null,
 
         /*  Dynamic property to determine if data item is selected.
         */

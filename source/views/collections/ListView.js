@@ -117,7 +117,7 @@ const ListView = Class({
         }
     },
 
-    layout: function () {
+    layerStyles: function () {
         const itemHeight = this.get( 'itemHeight' );
         let height = itemHeight * ( this.get( 'contentLength' ) || 0 );
         // Firefox breaks in weird and wonderful ways when a scroll area is
@@ -233,7 +233,7 @@ const ListView = Class({
                     childViews[ currentViewIndex ] === view;
                 // If not, remove
                 if ( !viewIsInCorrectPosition ) {
-                    // Suspend property changes so we don't redraw layout
+                    // Suspend property changes so we don't redraw layerStyles
                     // until back in the document, so that animation works
                     if ( isInDocument ) {
                         moved.add( view );

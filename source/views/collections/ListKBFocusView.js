@@ -41,7 +41,7 @@ const ListKBFocusView = Class({
         return index;
     }.property( 'index', 'record' ),
 
-    layout: function () {
+    layerStyles: function () {
         const itemHeight = this.get( 'itemHeight' );
         const index = this.get( 'layoutIndex' );
         return {

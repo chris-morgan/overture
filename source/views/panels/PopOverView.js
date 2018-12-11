@@ -74,7 +74,7 @@ const PopOverView = Class({
         const popOverEl = this._popOver;
         const calloutEl = this._callout;
         const safeAreaInsetBottom = rootView.get( 'safeAreaInsetBottom' );
-        const layout = {
+        const layerStyles = {
             position: 'absolute',
         };
         let calloutStyle = '';
@@ -83,21 +83,21 @@ const PopOverView = Class({
         this.insertView( options.view, this._popOver );
 
         if ( safeAreaInsetBottom ) {
-            layout.paddingBottom = safeAreaInsetBottom;
+            layerStyles.paddingBottom = safeAreaInsetBottom;
         }
         switch ( positionToThe ) {
         case 'top':
-            layout.paddingBottom = Math.max( safeAreaInsetBottom,
+            layerStyles.paddingBottom = Math.max( safeAreaInsetBottom,
                 rootView.get( 'pxHeight' ) - posTop - offsetTop );
             break;
         case 'right':
-            layout.paddingLeft = posLeft + posWidth + offsetLeft;
+            layerStyles.paddingLeft = posLeft + posWidth + offsetLeft;
             break;
         case 'bottom':
-            layout.paddingTop = posTop + posHeight + offsetTop;
+            layerStyles.paddingTop = posTop + posHeight + offsetTop;
             break;
         case 'left':
-            layout.paddingRight =
+            layerStyles.paddingRight =
                 rootView.get( 'pxWidth' ) - posLeft - offsetLeft;
             break;
         }
@@ -157,7 +157,7 @@ const PopOverView = Class({
         popOverEl.style.cssText = '';
         calloutEl.style.cssText = calloutStyle;
 
-        this.set( 'layout', layout )
+        this.set( 'layerStyles', layerStyles )
             .redraw()
             .keepInBounds();
     },

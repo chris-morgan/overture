@@ -99,7 +99,7 @@ const ScrollView = Class({
         Sets the overflow styles to show the scrollbars.
     */
     layerStyles: function () {
-        const styles = View.prototype.layerStyles.call( this );
+        const styles = this.get( 'layout' );
         styles.overflowX = this.get( 'showScrollbarX' ) ? 'auto' : 'hidden';
         styles.overflowY = this.get( 'showScrollbarY' ) ? 'auto' : 'hidden';
         styles.WebkitOverflowScrolling = 'touch';

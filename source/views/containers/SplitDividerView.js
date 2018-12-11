@@ -111,13 +111,13 @@ const SplitDividerView = Class({
     }.property( 'flex', 'direction' ),
 
     /**
-        Property: O.SplitDividerView#layout
+        Property: O.SplitDividerView#layerStyles
         Type: Object
 
-        Overrides default in O.View#layout to position the view based on the
-        direction, anchor, thickness and offset properties.
+        Overrides default in O.View#layerStyles to position the view based on
+        the direction, anchor, thickness and offset properties.
     */
-    layout: function () {
+    layerStyles: function () {
         const thickness = this.get( 'thickness' );
         let styles;
         if ( this.get( 'direction' ) === VERTICAL ) {

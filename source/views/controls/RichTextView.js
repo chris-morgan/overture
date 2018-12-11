@@ -419,7 +419,7 @@ const RichTextView = Class({
             // Need to account separately for any border in the new parent.
             const borders = scrollView.getPositionRelativeTo( newParent );
             toolbarView
-                .set( 'layout', {
+                .set( 'layerStyles', {
                     top: scrollView.get( 'pxTop' ),
                     left: position.left - borders.left,
                     width: toolbarView.get( 'pxWidth' ),
@@ -427,7 +427,7 @@ const RichTextView = Class({
             newParent.insertView( toolbarView );
         } else {
             toolbarView
-                .set( 'layout', {
+                .set( 'layerStyles', {
                     top: 0,
                     left: 0,
                     right: 0,
@@ -504,7 +504,7 @@ const RichTextView = Class({
 
         return new ToolbarView({
             className: 'v-Toolbar v-RichText-toolbar',
-            layout: showToolbar === TOOLBAR_AT_SELECTION ?
+            layerStyles: showToolbar === TOOLBAR_AT_SELECTION ?
                 bind( this, 'floatingToolbarLayout' ) :
                 {
                     position: 'absolute',
@@ -821,7 +821,7 @@ const RichTextView = Class({
             showFilter: false,
             options: this.get( 'fontSizeOptions' ).map(
                 ([ label, fontSize ]) => new ButtonView({
-                    layout: fontSize ? {
+                    layerStyles: fontSize ? {
                         fontSize,
                     } : null,
                     label,
@@ -854,7 +854,7 @@ const RichTextView = Class({
             showFilter: false,
             options: this.get( 'fontFaceOptions' ).map(
                 ([ label, fontFace ]) => new ButtonView({
-                    layout: fontFace ? {
+                    layerStyles: fontFace ? {
                         fontFamily: fontFace,
                     } : null,
                     label,
@@ -898,7 +898,7 @@ const RichTextView = Class({
                     '#4b0082', '#800080', '#ee82ee', '#dda0dd', '#e6e6fa',
                     '#696969', '#808080', '#a9a9a9', '#d3d3d3', '#ffffff',
                 ].map( color => new ButtonView({
-                    layout: {
+                    layerStyles: {
                         backgroundColor: color,
                     },
                     label: color,

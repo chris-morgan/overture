@@ -525,36 +525,16 @@ const View = Class({
     // --- Layout ---
 
     /**
-        Property: O.View#layout
-        Type: Object
-        Default: {}
-
-        The CSS properties to apply to the view's layer. Any number values are
-        presumed to be in 'px', any string values are presumed to have an
-        appropriate unit suffix.
-    */
-    layout: {},
-
-    /**
         Property: O.View#layerStyles
-        Type: Object
+        Type: Object|null
 
-        An object representing all of the CSS styles set on the view DOM node,
-        as calculated from various other properties on the view. These are
-        recalculated, and the DOM node is updated, if any of the dependent
-        properties change.
+        An object representing the style attribute of the view DOM node.
+        If a computed property, the style attribute is updated on change.
+
+        Any number values are presumed to be in 'px', any string values are
+        presumed to have an appropriate unit suffix.
     */
-    layerStyles: function () {
-        const values = {};
-        const position = this.get( 'positioning' );
-        if ( position ) {
-            if ( window.console && console.warn ) {
-                console.warn( 'View#positioning is deprecated' );
-            }
-            values.position = position;
-        }
-        return Object.assign( values, this.get( 'layout' ) );
-    }.property( 'layout', 'positioning' ),
+    layerStyles: null,
 
     /**
         Method: O.View#render

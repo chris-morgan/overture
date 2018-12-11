@@ -29,7 +29,7 @@ const ListItemView = Class({
         ListItemView.parent.constructor.call( this, mixin );
     },
 
-    layout: function () {
+    layerStyles: function () {
         const index = this.get( 'index' );
         const itemHeight = this.get( 'itemHeight' );
         const animateIn = this.get( 'animateIn' );
@@ -42,13 +42,13 @@ const ListItemView = Class({
         };
     }.property(),
 
-    layoutWillChange: function () {
-        this.computedPropertyDidChange( 'layout' );
+    layerStylesWillChange: function () {
+        this.computedPropertyDidChange( 'layerStyles' );
     }.nextLoop().observes( 'index', 'itemHeight' ),
 
-    resetLayout: function () {
+    resetLayerStyles: function () {
         if ( this.get( 'animateIn' ) ) {
-            this.computedPropertyDidChange( 'layout' );
+            this.computedPropertyDidChange( 'layerStyles' );
         }
     }.nextLoop().observes( 'isInDocument' ),
 });

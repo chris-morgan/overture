@@ -241,7 +241,6 @@ const ToolbarView = Class({
         this.insertView( this._measureView =
             new View({
                 className: 'v-Toolbar-measure',
-                layerStyles: {},
                 childViews: Object.values( this._views )
                                   .filter( view => !view.get( 'parentView' ) ),
                 draw ( layer ) {
