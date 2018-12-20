@@ -201,12 +201,12 @@ const getDelta = function ( Type, data, changed ) {
 
 // ---
 
+const { on: superOn, once: superOnce, off: superOff } = Obj.prototype;
+
 const mapToTrue = ( object, uri ) => {
     object[ uri ] = true;
     return object;
 };
-
-// ---
 
 /**
     Class: O.Store
@@ -2716,16 +2716,27 @@ const Store = Class({
         });
         return isDefaultPrevented;
     },
-});
 
-const objPrototype = Obj.prototype;
-[ 'on', 'once', 'off' ].forEach( function ( property ) {
-    Store.prototype[ property ] = function ( type, object, method ) {
+    on ( type, object, method ) {
         if ( typeof type !== 'string' ) {
             type = guid( type );
         }
-        return objPrototype[ property ].call( this, type, object, method );
-    };
+        return superOn.call( this, type, object, method );
+    },
+
+    once ( type, object, method ) {
+        if ( typeof type !== 'string' ) {
+            type = guid( type );
+        }
+        return superOnce.call( this, type, object, method );
+    },
+
+    off ( type, object, method ) {
+        if ( typeof type !== 'string' ) {
+            type = guid( type );
+        }
+        return superOff.call( this, type, object, method );
+    },
 });
 
 export default Store;

@@ -537,9 +537,11 @@ const DragController = new Obj({
     }.on( 'keydown' ),
 });
 
-[ 'dragover', 'dragenter', 'dragleave', 'drop', 'dragend' ].forEach( type => {
-    document.addEventListener( type, DragController, false );
-});
+document.addEventListener( 'dragover', DragController, false );
+document.addEventListener( 'dragenter', DragController, false );
+document.addEventListener( 'dragleave', DragController, false );
+document.addEventListener( 'dragdrop', DragController, false );
+document.addEventListener( 'dragend', DragController, false );
 
 ViewEventsController.addEventTarget( DragController, 20 );
 
